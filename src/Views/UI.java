@@ -151,9 +151,9 @@ public class UI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "El símbolo Epsilon debe ser la &. "
-                + "No use un símbolo para la concatenación dentro de la expresión regular. "
-                + "Use solamente los símbolos para |,*, + y ? en las expresiones regulares. "
-                + "Porfavor no use espacios en la expresión regular");
+                + "No use un símbolo para la concatenación dentro de la expresión regular.\n"
+                + "Use solamente los símbolos |,*, + y ? en las expresiones regulares. "
+                + "\nPorfavor no use espacios en la expresión regular");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
