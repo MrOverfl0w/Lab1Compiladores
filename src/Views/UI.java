@@ -5,6 +5,7 @@
  */
 package Views;
 
+import Logica.Arbol;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -20,8 +21,9 @@ public class UI extends javax.swing.JFrame {
     public UI() {
         initComponents();
     }
-    
+
     ArrayList alfabeto;
+    ArrayList sy = new ArrayList();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,23 +131,49 @@ public class UI extends javax.swing.JFrame {
         alfabeto = new ArrayList();
         String string_expresion = jTextField1.getText();
         String[] exp = string_expresion.split("");
-        for (int i = exp.length-1; i >= 0; i--){
-            if (!isSym(exp[i]) && !alfabeto.contains(exp[i])){
+        for (int i = exp.length - 1; i >= 0; i--) {
+            if (!isSym(exp[i]) && !alfabeto.contains(exp[i])) {
                 alfabeto.add(exp[i]);
             }
         }
         jLabel4.setText(alfabeto.toString());
-        
+
+        hacerArbol(exp);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private boolean isSym(String str){
+    private boolean isSym(String str) {
         return str.equals("&") | str.equals("|") | str.equals("*") | str.equals("+") | str.equals("?")
                 || str.equals("(") || str.equals(")");
     }
-    
+
+    private void hacerArbol(String[] exp) {
+        ArrayList expresion = addConcatenacion(exp);
+        System.out.println(expresion.toString());
+        Arbol arbol = new Arbol(expresion);
+    }
+
+    private ArrayList addConcatenacion(String[] exp) {
+        alfabeto.add("&");
+        sy.add("*"); sy.add("+"); sy.add(")"); sy.add("?");
+        ArrayList str = new ArrayList();
+        for (int i = 0; i < exp.length-1; i++) {
+            str.add(exp[i]);
+            if (!exp[i].equals("(") && !exp[i].equals("|")) {
+                if ((sy.contains(exp[i]) && (alfabeto.contains(exp[i+1]) || exp[i+1].equals("("))) || 
+                        (alfabeto.contains(exp[i]) && alfabeto.contains(exp[i+1]))) {
+                    str.add(".");
+                }
+            }
+        }
+        str.add(exp[exp.length-1]);
+        str.add("."); str.add("#");
+        return str;
+    }
+
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -153,7 +181,8 @@ public class UI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "El símbolo Epsilon debe ser la &. "
                 + "No use un símbolo para la concatenación dentro de la expresión regular.\n"
                 + "Use solamente los símbolos |,*, + y ? en las expresiones regulares. "
-                + "\nPorfavor no use espacios en la expresión regular");
+                + "\nPorfavor no use espacios en la expresión regular."
+                + "\nLos simbolos ., (, ) y # no son permitidos en el alfabeto.");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
