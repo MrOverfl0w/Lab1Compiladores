@@ -18,12 +18,12 @@ public class Nodo {
         izq = null;
         der = null;
     }
-    public Nodo(String dato, int pos){
-        this.dato = dato;
-        this.pos = pos;
-        izq = null;
-        der = null;
-    }
+//    public Nodo(String dato, int pos){
+//        this.dato = dato;
+//        this.pos = pos;
+//        izq = null;
+//        der = null;
+//    }
 
     public String getDato() {
         return dato;
