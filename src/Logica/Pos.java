@@ -67,12 +67,14 @@ public class Pos {
         }
         switch (dato) {
             case "|":
-                raiz.pPos = raiz.getIzq().pPos;
+                raiz.pPos = new ArrayList<>();
+                raiz.pPos.addAll(raiz.getIzq().pPos);
                 raiz.pPos.addAll(raiz.getDer().pPos);
                 break;
             case ".":
                 if (raiz.getIzq().anulable) {
-                    raiz.pPos = raiz.getIzq().pPos;
+                    raiz.pPos = new ArrayList<>();
+                    raiz.pPos.addAll(raiz.getIzq().pPos);
                     raiz.pPos.addAll(raiz.getDer().pPos);
                 } else {
                     raiz.pPos = raiz.getIzq().pPos;
@@ -107,12 +109,14 @@ public class Pos {
         }
         switch (dato) {
             case "|":
-                raiz.uPos = raiz.getIzq().uPos;
+                raiz.uPos = new ArrayList<>();
+                raiz.uPos.addAll(raiz.getIzq().uPos);
                 raiz.uPos.addAll(raiz.getDer().uPos);
                 break;
             case ".":
                 if (raiz.getDer().anulable) {
-                    raiz.uPos = raiz.getIzq().uPos;
+                    raiz.uPos = new ArrayList<>();
+                    raiz.uPos.addAll(raiz.getIzq().uPos);
                     raiz.uPos.addAll(raiz.getDer().uPos);
                 } else {
                     raiz.uPos = raiz.getDer().uPos;
