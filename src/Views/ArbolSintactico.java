@@ -25,6 +25,7 @@ public class ArbolSintactico extends javax.swing.JFrame {
     public ArbolSintactico(Arbol arbol) {
         initComponents();
         this.arbol = arbol;
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -88,7 +89,6 @@ public class ArbolSintactico extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
     /**

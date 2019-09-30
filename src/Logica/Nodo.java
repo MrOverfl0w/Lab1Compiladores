@@ -5,25 +5,26 @@
  */
 package Logica;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Alber
  */
 public class Nodo {
     private String dato;
-    private int pos;
+    public int pos;
     private Nodo izq,der;
+    public boolean anulable;
+    public ArrayList<Integer> pPos, uPos;
+    
     public Nodo(String dato){
         this.dato = dato;
         izq = null;
         der = null;
+        pPos = new ArrayList<>();
+        uPos = new ArrayList<>();
     }
-//    public Nodo(String dato, int pos){
-//        this.dato = dato;
-//        this.pos = pos;
-//        izq = null;
-//        der = null;
-//    }
 
     public String getDato() {
         return dato;

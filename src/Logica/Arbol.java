@@ -7,7 +7,6 @@ package Logica;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 
 /**
  *
@@ -16,36 +15,21 @@ import java.util.Iterator;
 public class Arbol {
 
     private Nodo raiz = null;
-    private ArrayList nodos;
     private ArrayList exp;
     private ArrayList pila;
     private int alt;
-    ArrayList<Nodo> p1 = new ArrayList<>();
+    private int pos = 1;
+    private ArrayList<Nodo> tPos = new ArrayList<>();
+    private ArrayList<Nodo> p1 = new ArrayList<>();
 
     public Arbol(ArrayList exp) {
         this.exp = exp;
-        String[] cadena = Arrays.stream(exp.toArray()).toArray(String[]::new);
-//        raiz = arbol(cadena);
-//        iniciarNodos();
         exp.add(0, "(");
         exp.add(")");
         raiz = generarArbol(null);
+        etiquetas(raiz);
     }
-
-//    private void iniciarNodos() {
-//        nodos = new ArrayList();
-//        int i = 1;
-//        for (Iterator it = exp.iterator(); it.hasNext();) {
-//            String dato = String.valueOf(it.next());
-//            if (!(dato.equals("(") || dato.equals(")"))) {
-//                if (isSym(dato)) {
-//                    nodos.add(new Nodo(dato));
-//                } else {
-//                    nodos.add(new Nodo(dato, i++));
-//                }
-//            }
-//        }
-//    }
+    
     private Nodo generarArbol(Nodo p) {
         int abre, cierra;
         pila = new ArrayList();
@@ -75,7 +59,7 @@ public class Arbol {
     }
 
     private boolean isSym(String str) {
-        return str.equals("&") | str.equals("|") | str.equals("*") | str.equals("+") | str.equals("?")
+        return str.equals("|") | str.equals("*") | str.equals("+") | str.equals("?")
                 || str.equals("(") || str.equals(")") || str.equals(".");
     }
 
@@ -134,6 +118,18 @@ public class Arbol {
         return null;
     }
     
+    private void etiquetas(Nodo raiz){
+        if (!isSym(raiz.getDato())){
+            tPos.add(raiz);
+            raiz.pos = pos++;
+        }
+        if (raiz.getIzq() != null){
+            etiquetas(raiz.getIzq());
+        }
+        if (raiz.getDer() != null){
+            etiquetas(raiz.getDer());
+        }
+    }
     
     
     public Nodo getRaiz(){
@@ -151,5 +147,13 @@ public class Arbol {
     public int getAltura(){
         altura(raiz,1);
         return alt;
+    }
+
+    public ArrayList<Nodo> getHojas() {
+        return tPos;
+    }
+    
+    public void ActualizarRaiz(Nodo raiz){
+        this.raiz = raiz;
     }
 }
