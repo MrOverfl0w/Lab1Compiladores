@@ -106,6 +106,8 @@ public class ArbolSintactico extends javax.swing.JFrame {
      }
      
      g.drawString(n.getDato()+"", x , y );
+     g.drawString(n.pPos.toString()+"", x-30 , y-10 );
+     g.drawString(n.uPos.toString()+"", x+10 , y+10 );
      
      pintaArbol(g, n.getIzq(), (int)(x - xoff), (y + yoff),xoff+nivel*2,yoff,nivel+1);
      pintaArbol(g, n.getDer(), (int)(x + xoff), (y + yoff),xoff-nivel*2-20,yoff,nivel+1);

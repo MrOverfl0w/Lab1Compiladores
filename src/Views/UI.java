@@ -6,6 +6,7 @@
 package Views;
 
 import Logica.Arbol;
+import Logica.Estados;
 import Logica.Nodo;
 import Logica.Pos;
 import java.util.ArrayList;
@@ -259,6 +260,7 @@ public class UI extends javax.swing.JFrame {
         table.setRowCount(0);
         table2.setRowCount(0);
         LlenarTabla();
+        //Estados estados = new Estados(arbol.getRaiz(), alfabeto, arbol.getHojas(), pos.getSiguientePos());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private boolean isSym(String str) {
